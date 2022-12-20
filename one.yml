@@ -1,0 +1,20 @@
+---
+- hosts: dev
+
+  tasks:
+    - name: installing git
+      yum: name=git state=present
+    
+    - name: installing httpd
+      yum: name=httpd state=present
+
+    - name: restart httpd
+      service: name=httpd state=restarted
+
+    - name: getting central repo
+      git:
+        repo: "https://github.com/sush-19/Sourcecode.git"
+        dest: "/var/www/html/index.html"
+        version: "main"
+
+
